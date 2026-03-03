@@ -1,19 +1,35 @@
 <body>
   <link rel="stylesheet" href="style.css">
   <head>
-    <!-- HERE BELOW IS BUTTONS -->
-    <button onclick="window.location.href='index.html';" style="background-color: black; color: white; border-color: white; border-radius: 10px;">HOME</button>
-    <button onclick="window.location.href='games.html';" style="background-color: black; color: white; border-color: white; border-radius: 10px;">GAMES</button>
-    <button onclick="window.location.href='settings.html';" style="background-color: black; color: white; border-color: white; border-radius: 10px;">SETTINGS</button>
-    <!-- BUTTONS END HERE -->
-    <hr style="border-color: grey">
-    <h1>CREDITS </h1>
-    <button onclick="window.location.href='credits/tj.html';" style="width: 200px; height: 400px; text-align: center; background-image: url('images/tj.png'); background-position: center; background-size: cover;">thatonetrashgamer7976  </button>
-    <button onclick="window.location.href='credits/loafyen.html';" style="width: 200px; height: 400px; text-align: center;">Loafyen</button>
-    <button>Lucas Gipson</button>
-    <!-- names end here -->
-   
-   
-   
+    <div class="nav-container">
+      <button onclick="window.location.href='index.html';">HOME</button>
+      <button onclick="window.location.href='games.html';">GAMES</button>
+      <button onclick="window.location.href='settings.html';">SETTINGS</button>
+      <button onclick="window.location.href='movies.html';">MOVIES</button>
+    </div>
+    
+    <hr>
+    <h1>CREDITS</h1>
+    <script src="script.js"></script>
+
+    <h2>OWNERS</h2>
+    <div style="display: flex; flex-wrap: wrap; gap: 20px; justify-content: center; padding: 20px;">
+      <button onclick="window.location.href='credits/tj.html';"
+        style="width: 200px; height: 300px; background-image: url('images/tj.png'); background-position: center; background-size: cover; border: 2px solid #333;">
+        thatonetrashgamer7976
+      </button>
+      <button onclick="window.location.href='credits/loafyen.html';"
+        style="width: 200px; height: 300px; border: 2px solid #333;">
+        Loafyen
+      </button>
+      <button onclick="window.location.href='credits/ilikehardees.html';"
+        style="width: 200px; height: 300px; background-image: url('images/lucas.png'); background-position: center; background-size: cover; border: 2px solid #333;">
+        ilikehardees
+      </button>
+    </div>
+
+    <hr>
+    <h2>PLAY TESTERS & BUG FINDERS</h2>
+    <p style="color: #888;">(List coming soon)</p>
   </head>
 </body>
