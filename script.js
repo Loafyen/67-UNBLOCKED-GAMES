@@ -113,3 +113,35 @@ if (typeof window.cloakInitDone === 'undefined') {
         }
     })();
 }
+
+// Search Logic
+document.addEventListener('DOMContentLoaded', () => {
+    const searchInput = document.getElementById('gameSearch');
+    if (searchInput) {
+        searchInput.addEventListener('input', (e) => {
+            const searchTerm = e.target.value.toLowerCase();
+            const gameButtons = document.querySelectorAll('.game-grid .game-btn');
+            
+            gameButtons.forEach(button => {
+                // Get game name from background image URL or button text
+                const bgImage = button.style.backgroundImage;
+                const buttonText = button.textContent.toLowerCase();
+                let gameName = '';
+                
+                if (bgImage) {
+                    // Extract filename from url("images/NAME.png")
+                    const match = bgImage.match(/images\/(.+?)\./);
+                    if (match && match[1]) {
+                        gameName = match[1].replace(/_/g, ' ').toLowerCase();
+                    }
+                }
+                
+                if (gameName.includes(searchTerm) || buttonText.includes(searchTerm)) {
+                    button.style.display = 'inline-flex';
+                } else {
+                    button.style.display = 'none';
+                }
+            });
+        });
+    }
+});

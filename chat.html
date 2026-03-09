@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Chat | 67 UNBLOCKED GAMES</title>
+  <style>
+  body {
+      background-color: #000;
+      color: #fff;
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+      margin: 0;
+      padding: 20px;
+      line-height: 1.5;
+      text-align: center;
+  }
+  h1, h2, h3, h4 {
+      color: #fff;
+      margin: 10px 0;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+  }
+  h1 { font-size: 2.5rem; }
+  h2 { font-size: 1.8rem; }
+  h3 { font-size: 1.2rem; color: #888; }
+  p { color: #aaa; }
+  button {
+      background-color: #111;
+      color: #fff;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 12px 24px;
+      cursor: pointer;
+      transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
+      font-size: 14px;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      margin: 5px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      outline: none;
+  }
+  button:hover {
+      background-color: #fff;
+      color: #000;
+      border-color: #fff;
+      transform: translateY(-2px);
+      box-shadow: 0 10px 20px rgba(255, 255, 255, 0.1);
+  }
+  button:active { transform: translateY(0); }
+  hr {
+      border: 0;
+      border-top: 1px solid #222;
+      margin: 30px auto;
+      width: 100%;
+  }
+  .nav-container {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-bottom: 30px;
+  }
+  input, textarea {
+      background-color: #111;
+      color: #fff;
+      border: 1px solid #333;
+      border-radius: 8px;
+      padding: 12px 16px;
+      font-size: 15px;
+      font-family: inherit;
+      outline: none;
+      transition: border-color 0.2s;
+  }
+  input:focus, textarea:focus {
+      border-color: #555;
+  }
+
+  /* Lobby */
+  #lobby {
+      max-width: 480px;
+      margin: 0 auto;
+      text-align: left;
+  }
+  #lobby h2 { text-align: center; margin-bottom: 10px; }
+  #lobby p  { text-align: center; margin-bottom: 30px; }
+  .field-group {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      margin-bottom: 20px;
+  }
+  .field-group label {
+      font-size: 12px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      color: #888;
+      margin-bottom: 4px;
+      display: block;
+  }
+  .field-group input {
+      width: 100%;
+      box-sizing: border-box;
+  }
+  .lobby-buttons {
+      display: flex;
+      gap: 10px;
+  }
+  .lobby-buttons button {
+      flex: 1;
+      justify-content: center;
+  }
+  .btn-green  { background-color: #1a5c2e; border-color: #28a745; }
+  .btn-green:hover  { background-color: #28a745; color: #fff; border-color: #28a745; }
+  .btn-blue   { background-color: #0d3a5c; border-color: #007bff; }
+  .btn-blue:hover   { background-color: #007bff; color: #fff; border-color: #007bff; }
+  .divider {
+      text-align: center;
+      color: #444;
+      margin: 20px 0;
+      position: relative;
+  }
+  .divider::before, .divider::after {
+      content: '';
+      display: inline-block;
+      width: 40%;
+      height: 1px;
+      background: #333;
+      vertical-align: middle;
+      margin: 0 8px;
+  }
+  #lobbyError {
+      color: #dc3545;
+      font-size: 13px;
+      margin-top: 8px;
+      display: none;
+      text-align: center;
+  }
+
+  /* Chat Room */
+  #chatRoom { display: none; max-width: 800px; margin: 0 auto; }
+  #roomHeader {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      background: #111;
+      border: 1px solid #222;
+      border-radius: 10px;
+      padding: 14px 20px;
+      margin-bottom: 16px;
+  }
+  #roomInfo { text-align: left; }
+  #roomInfo .room-label { font-size: 11px; color: #555; text-transform: uppercase; letter-spacing: 0.1em; }
+  #roomInfo .room-code-display { font-size: 1.4rem; font-weight: 800; letter-spacing: 0.1em; }
+  #userInfo { font-size: 13px; color: #888; }
+  #leaveBtn { background: transparent; border-color: #555; color: #aaa; padding: 8px 16px; }
+  #leaveBtn:hover { background: #dc3545; border-color: #dc3545; color: #fff; }
+
+  #messages {
+      height: 420px;
+      overflow-y: auto;
+      background: #080808;
+      border: 1px solid #222;
+      border-radius: 10px;
+      padding: 16px;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      margin-bottom: 12px;
+  }
+  #messages::-webkit-scrollbar { width: 6px; }
+  #messages::-webkit-scrollbar-track { background: #111; }
+  #messages::-webkit-scrollbar-thumb { background: #333; border-radius: 3px; }
+
+  .msg { font-size: 14px; line-height: 1.5; }
+  .msg .meta { font-weight: 700; color: #ccc; margin-right: 6px; }
+  .msg .time { font-size: 11px; color: #444; margin-left: 6px; }
+  .msg-you .meta { color: #4ade80; }
+  .msg-system { color: #555; font-style: italic; font-size: 13px; }
+
+  #inputRow {
+      display: flex;
+      gap: 10px;
+  }
+  #messageInput {
+      flex: 1;
+      padding: 12px 16px;
+      font-size: 15px;
+  }
+  #sendBtn { padding: 12px 24px; white-space: nowrap; }
+  </style>
+</head>
+<body>
+  <div class="nav-container">
+    <button onclick="window.location.href='index.html'">HOME</button>
+    <button onclick="window.location.href='games.html'">GAMES</button>
+    <button onclick="window.location.href='settings.html'">SETTINGS</button>
+    <button onclick="window.location.href='credits.html'">CREDITS</button>
+    <button onclick="window.location.href='movies.html'">MOVIES</button>
+  </div>
+
+  <hr>
+  <h1>Chat Rooms</h1>
+  <h3>Create or join a room with a code and chat in real time</h3>
+  <hr>
+
+  <!-- Lobby -->
+  <div id="lobby">
+    <div class="field-group">
+      <div>
+        <label>Your Username</label>
+        <input type="text" id="usernameInput" placeholder="Enter a username..." maxlength="30">
+      </div>
+    </div>
+
+    <div class="divider">Create a Room</div>
+
+    <div class="field-group">
+      <div>
+        <label>Room Code (leave blank to auto-generate)</label>
+        <input type="text" id="createRoomInput" placeholder="e.g. GAMERS123" maxlength="20">
+      </div>
+    </div>
+    <button class="btn-green" onclick="createRoom()">+ Create Room</button>
+
+    <div class="divider">Join a Room</div>
+
+    <div class="field-group">
+      <div>
+        <label>Room Code</label>
+        <h6>put general for the main general chat</h6>
+        <input type="text" id="joinRoomInput" placeholder="Enter room code..." maxlength="20">
+      </div>
+    </div>
+    <button class="btn-blue" onclick="joinRoom()">Join Room</button>
+
+    <div id="lobbyError"></div>
+  </div>
+
+  <!-- Chat Room -->
+  <div id="chatRoom">
+    <div id="roomHeader">
+      <div id="roomInfo">
+        <div class="room-label">Room Code</div>
+        <div class="room-code-display" id="roomCodeDisplay">---</div>
+      </div>
+      <div id="userInfo">Chatting as <strong id="usernameDisplay"></strong></div>
+      <button id="leaveBtn" onclick="leaveRoom()">Leave</button>
+    </div>
+
+    <div id="messages"></div>
+
+    <div id="inputRow">
+      <input type="text" id="messageInput" placeholder="Type a message..." maxlength="500" onkeydown="if(event.key==='Enter') sendMessage()">
+      <button id="sendBtn" onclick="sendMessage()">Send</button>
+    </div>
+  </div>
+
+  <script src="script.js"></script>
+  <script>
+    let ws = null;
+    let myUsername = '';
+    let myRoom = '';
+
+    function getWsUrl() {
+        const proto = location.protocol === 'https:' ? 'wss' : 'ws';
+        return `${proto}://${location.host}`;
+    }
+
+    function showLobbyError(msg) {
+        const el = document.getElementById('lobbyError');
+        el.textContent = msg;
+        el.style.display = 'block';
+        setTimeout(() => { el.style.display = 'none'; }, 4000);
+    }
+
+    function generateCode() {
+        return Math.random().toString(36).substring(2, 8).toUpperCase();
+    }
+
+    function createRoom() {
+        const username = document.getElementById('usernameInput').value.trim();
+        if (!username) return showLobbyError('Please enter a username.');
+        let roomCode = document.getElementById('createRoomInput').value.trim().toUpperCase();
+        if (!roomCode) roomCode = generateCode();
+        connect(roomCode, username);
+    }
+
+    function joinRoom() {
+        const username = document.getElementById('usernameInput').value.trim();
+        const roomCode = document.getElementById('joinRoomInput').value.trim().toUpperCase();
+        if (!username) return showLobbyError('Please enter a username.');
+        if (!roomCode) return showLobbyError('Please enter a room code.');
+        connect(roomCode, username);
+    }
+
+    function connect(roomCode, username) {
+        if (ws) ws.close();
+
+        ws = new WebSocket(getWsUrl());
+
+        ws.onopen = () => {
+            ws.send(JSON.stringify({ type: 'join', roomCode, username }));
+        };
+
+        ws.onmessage = (event) => {
+            const data = JSON.parse(event.data);
+
+            if (data.type === 'joined') {
+                myUsername = data.username;
+                myRoom = data.roomCode;
+                showChatRoom();
+                loadHistory(data.roomCode);
+            } else if (data.type === 'message') {
+                appendMessage(data);
+            } else if (data.type === 'system') {
+                appendSystem(data.message);
+            } else if (data.type === 'error') {
+                showLobbyError(data.message);
+                ws.close();
+            }
+        };
+
+        ws.onclose = () => {
+            if (myRoom) {
+                appendSystem('Disconnected from chat.');
+            }
+        };
+
+        ws.onerror = () => {
+            showLobbyError('Connection error. Please try again.');
+        };
+    }
+
+    async function loadHistory(roomCode) {
+        try {
+            const res = await fetch(`/api/messages/${roomCode}`);
+            const messages = await res.json();
+            messages.forEach(msg => {
+                appendMessage({
+                    username: msg.username,
+                    message: msg.message,
+                    time: new Date(msg.created_at).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' }),
+                    historical: true
+                });
+            });
+            if (messages.length > 0) {
+                appendSystem('— previous messages —');
+            }
+        } catch(e) {
+            console.error('Failed to load history', e);
+        }
+    }
+
+    function showChatRoom() {
+        document.getElementById('lobby').style.display = 'none';
+        document.getElementById('chatRoom').style.display = 'block';
+        document.getElementById('roomCodeDisplay').textContent = myRoom;
+        document.getElementById('usernameDisplay').textContent = myUsername;
+        document.getElementById('messageInput').focus();
+    }
+
+    function appendMessage(data) {
+        const box = document.getElementById('messages');
+        const div = document.createElement('div');
+        const isMe = data.username === myUsername && !data.historical;
+        div.className = `msg${isMe ? ' msg-you' : ''}`;
+        div.innerHTML = `<span class="meta">${escHtml(data.username)}</span>${escHtml(data.message)}<span class="time">${data.time || ''}</span>`;
+        box.appendChild(div);
+        box.scrollTop = box.scrollHeight;
+    }
+
+    function appendSystem(text) {
+        const box = document.getElementById('messages');
+        const div = document.createElement('div');
+        div.className = 'msg msg-system';
+        div.textContent = text;
+        box.appendChild(div);
+        box.scrollTop = box.scrollHeight;
+    }
+
+    function sendMessage() {
+        const input = document.getElementById('messageInput');
+        const message = input.value.trim();
+        if (!message || !ws || ws.readyState !== WebSocket.OPEN) return;
+        ws.send(JSON.stringify({ type: 'message', message }));
+        input.value = '';
+    }
+
+    function leaveRoom() {
+        if (ws) ws.close();
+        myRoom = '';
+        myUsername = '';
+        document.getElementById('messages').innerHTML = '';
+        document.getElementById('chatRoom').style.display = 'none';
+        document.getElementById('lobby').style.display = 'block';
+    }
+
+    function escHtml(str) {
+        return str.replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;');
+    }
+  </script>
+</body>
+</html>
